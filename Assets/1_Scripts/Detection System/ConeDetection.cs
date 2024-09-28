@@ -3,17 +3,22 @@ using UnityEngine;
 
 public class ConeDetection : MonoBehaviour
 {
+    public bool detected;
+    public GameObject target;
+
     public float detectionAngle = 45f;
     public float detectionDistance = 5f;
     public LayerMask targetMask;
-    public Color gizmosColor = Color.red;
 
+#if UNITY_EDITOR
+    public Color gizmosColor = Color.red;
+#endif
     void Update()
     {
-        DetectTargets();
+        detected = DetectTargets();
     }
 
-    void DetectTargets()
+    bool DetectTargets()
     {
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, detectionDistance, targetMask);
 
@@ -24,12 +29,17 @@ public class ConeDetection : MonoBehaviour
 
             if (angleToTarget < detectionAngle)
             {
+                this.target = target.gameObject;
                 Debug.Log("Target detected: " + target.name);
-                // Optionally: Perform actions with the detected target
+                return true;
             }
         }
+
+        //this.target = null;
+        return false;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmosColor;
@@ -41,4 +51,5 @@ public class ConeDetection : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + directionA);
         Gizmos.DrawLine(transform.position, transform.position + directionB);
     }
+#endif
 }
