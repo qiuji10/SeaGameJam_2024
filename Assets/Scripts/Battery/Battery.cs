@@ -15,7 +15,7 @@ public class Battery : MonoBehaviour
 
             if (playermovement != null)
             {
-                playermovement.AddBatteries(quantity, volts);
+                playermovement.AddBattery(quantity, volts);
                 Destroy(gameObject);
             }
         }

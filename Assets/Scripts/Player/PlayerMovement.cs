@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public int totalVolts = 0;
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
@@ -37,14 +38,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jump Button Pressed!");
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            AddBatteries(totalBatteries, totalVolts);
-        }
-
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            RemoveBatteries();
+            DropBattery();
         }
 
         affectedSpeed = Mathf.Max(3f, movementSpeed - totalBatteries * speedReductionFactor); 
@@ -56,19 +52,27 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * affectedSpeed, rb.velocity.y);
     }
 
-    public void AddBatteries(int quantity, int volts)
+    public void AddBattery(int quantity, int volts)
     {
         totalBatteries += quantity;
         totalVolts += volts * quantity;
         Debug.Log("Battery Picked Up! Total Batteries: " + totalBatteries + ", Total Volts: " + totalVolts);
     }
 
-    public void RemoveBatteries()
+    public void DropBattery()
     {
         if (totalBatteries > 0)
         {
             totalBatteries -= 1;
-            Debug.Log("Removed 1 Battery! Total Batteries: " + totalBatteries);
+            totalVolts -= 5;
+            Vector3 dropPos = transform.position + new Vector3(1f, 0f, 0f);
+            Instantiate(batteryPrefab, dropPos, Quaternion.identity);
+            Debug.Log("Removed 1 Battery! Total Batteries: " + totalBatteries + ", Total Volts: " + totalVolts);
+        }
+
+        else
+        {
+            Debug.Log("No Batteries to Drop!");
         }
     }
 }
