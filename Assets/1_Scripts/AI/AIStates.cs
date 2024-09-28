@@ -1,5 +1,6 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
+using static AIAnimationKeys;
 
 public class IdleState : AIStateBase
 {
@@ -123,6 +124,7 @@ public class AttackState : AIStateBase
 
         if (weapon.CanAttack())
         {
+            _blackboard.animator.SetTrigger(ATTACK);
             weapon.Attack();
         }
     }
