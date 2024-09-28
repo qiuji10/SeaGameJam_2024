@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AIAnimationKeys;
 
 public class AITransform : MonoBehaviour
 {
     private AIBlackboard _blackboard;
+    private Vector3 prevPosition;
 
     private void Awake()
     {
@@ -14,6 +16,18 @@ public class AITransform : MonoBehaviour
     private void Update()
     {
         UpdateFaceDirection();
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateWalkingAnimation();
+    }
+
+    public void UpdateWalkingAnimation()
+    {
+        bool isMoving = transform.position != prevPosition;
+        _blackboard.animator.SetBool(MOVE, isMoving);
+        prevPosition = transform.position;
     }
 
     public void UpdateFaceDirection()
