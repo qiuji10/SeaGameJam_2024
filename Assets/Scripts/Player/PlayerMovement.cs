@@ -29,12 +29,15 @@ public class PlayerMovement : MonoBehaviour
     const string PLAYER_WALK = "Walk_Right";
     const string PLAYER_IDLE = "Player_Idle";
 
+    private PlayerShooting playerShooting;
+
 
     private void Start()
     {
         affectedSpeed = movementSpeed;
         jumpPower = initialjumpPower;
         animator = GetComponent<Animator>();
+        playerShooting = GetComponent<PlayerShooting>();
     }
 
     void Update()
@@ -74,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
     {
         totalBatteries += quantity;
         totalVolts += volts * quantity;
+        playerShooting.ResetVolts();
+
+
         AdjustJump();
         Debug.Log("Battery Picked Up! Total Batteries: " + totalBatteries + ", Total Volts: " + totalVolts);
     }
