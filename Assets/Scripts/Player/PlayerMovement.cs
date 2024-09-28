@@ -12,26 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.0f, 2.0f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.velocity = new Vector2(rb.velocity.y, jumpPower);
+            Debug.Log("Jump Button Pressed!");
         }
 
-        else if (Input.GetButtonUp("Jump") && IsGrounded()) 
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     private void FixedUpdate()
