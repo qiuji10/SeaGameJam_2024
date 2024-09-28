@@ -9,9 +9,6 @@ public class Gun : MonoBehaviour, IWeapon
     public Transform firePoint;
     public Bullet bulletPrefab;
 
-    [Header("Debug")]
-    [SerializeField] private Transform _target;
-
     private float cdTimer;
 
     public Dictionary<string, object> attributes { get; set; }
