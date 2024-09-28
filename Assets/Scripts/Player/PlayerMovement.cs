@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private float jumpPower;
     private float minjumpPower = 1f;
     private float speedReductionFactor = 0.5f;
-    private float jumpReductionFactor = 0.1f;
 
 
     public int totalBatteries = 0;
