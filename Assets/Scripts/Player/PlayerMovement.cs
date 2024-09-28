@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float movementSpeed = 8f;
     private float affectedSpeed;
-    private float initialjumpPower = 16f;
+    [SerializeField] private float initialjumpPower = 16f;
     private float jumpPower;
     private float minjumpPower = 1f;
     private float speedReductionFactor = 0.5f;
@@ -19,15 +20,21 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject batteryPrefab;
+    [SerializeField] private SpriteRenderer player;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
+    private Animator animator;
+
+    const string PLAYER_WALK = "Walk_Right";
+    const string PLAYER_IDLE = "Player_Idle";
 
 
     private void Start()
     {
         affectedSpeed = movementSpeed;
         jumpPower = initialjumpPower;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -52,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         AdjustJump();
+        ManageAnimations();
 
         affectedSpeed = Mathf.Max(3f, movementSpeed - totalBatteries * speedReductionFactor);
 
@@ -106,5 +114,31 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log("Adjusted Jump Power: " + jumpPower);
 
+    }
+
+    private void ManageAnimations()
+    {
+      
+        if (horizontal != 0)
+        {
+           
+            if (horizontal < 0)
+            {
+
+                player.flipX = true;
+            }
+            else if (horizontal > 0)
+            {
+
+                player.flipX = false;
+            }
+         
+            
+           animator.Play(PLAYER_WALK);
+        }
+        else
+        {
+            animator.Play(PLAYER_IDLE); 
+        }
     }
 }
