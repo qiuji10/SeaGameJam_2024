@@ -77,3 +77,23 @@ public class AttackState : AIStateBase
         base.OnExit();
     }
 }
+
+public class DeathState : AIStateBase
+{
+    public DeathState(AIBlackboard blackboard) : base(blackboard) { }
+
+    protected override void OnEnter()
+    {
+        base.OnEnter();
+    }
+
+    protected override void OnUpdate(float deltaTime)
+    {
+        base.OnUpdate(deltaTime);
+    }
+
+    protected override void OnExit()
+    {
+        base.OnExit();
+    }
+}
