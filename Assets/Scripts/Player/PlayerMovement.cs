@@ -8,8 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float movementSpeed = 8f;
     private float affectedSpeed;
-    private float jumpPower = 16f;
+    private float initialjumpPower = 16f;
+    private float jumpPower;
+    private float minjumpPower = 1f;
     private float speedReductionFactor = 0.5f;
+    private float jumpReductionFactor = 0.1f;
 
 
     public int totalBatteries = 0;
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         affectedSpeed = movementSpeed;
+        jumpPower = initialjumpPower;
     }
 
     void Update()
@@ -32,18 +36,25 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.0f, 2.0f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && totalBatteries < 10)
         {
             rb.velocity = new Vector2(rb.velocity.y, jumpPower);
-            Debug.Log("Jump Button Pressed!");
+            Debug.Log("Jump Button Pressed! Jump Power: " + jumpPower);
         }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (totalBatteries > 10)
+        {
+            Debug.Log("Player cannot Jump!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
             DropBattery();
         }
 
-        affectedSpeed = Mathf.Max(3f, movementSpeed - totalBatteries * speedReductionFactor); 
+        AdjustJump();
+
+        affectedSpeed = Mathf.Max(3f, movementSpeed - totalBatteries * speedReductionFactor);
 
     }
 
@@ -56,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
         totalBatteries += quantity;
         totalVolts += volts * quantity;
+        AdjustJump();
         Debug.Log("Battery Picked Up! Total Batteries: " + totalBatteries + ", Total Volts: " + totalVolts);
     }
 
@@ -68,11 +80,32 @@ public class PlayerMovement : MonoBehaviour
             Vector3 dropPos = transform.position + new Vector3(1f, 0f, 0f);
             Instantiate(batteryPrefab, dropPos, Quaternion.identity);
             Debug.Log("Removed 1 Battery! Total Batteries: " + totalBatteries + ", Total Volts: " + totalVolts);
+            AdjustJump();
         }
 
         else
         {
             Debug.Log("No Batteries to Drop!");
         }
+    }
+
+    private void AdjustJump()
+    {
+        if (totalBatteries == 0)
+        {
+            jumpPower = initialjumpPower;
+        }
+        else if (totalBatteries >= 10)
+        {
+            jumpPower = 0f;
+        }
+        else
+        {
+            float batteryRatio = totalBatteries / 10f;
+            jumpPower = Mathf.Lerp(initialjumpPower, minjumpPower, batteryRatio);
+        }
+
+        Debug.Log("Adjusted Jump Power: " + jumpPower);
+
     }
 }
