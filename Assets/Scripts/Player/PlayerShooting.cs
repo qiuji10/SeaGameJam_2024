@@ -14,7 +14,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();    
         remainingVolts = batteryVolts;
     }
 
@@ -66,5 +66,10 @@ public class PlayerShooting : MonoBehaviour
                 Debug.Log("No Batteries left to Shoot!");
             }
         }
+    }
+
+    public void ResetVolts()
+    {
+        remainingVolts = batteryVolts;
     }
 }
