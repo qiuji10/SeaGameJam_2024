@@ -17,7 +17,17 @@ public class AIBlackboard : MonoBehaviour
 
     public Animator animator;
     public Rigidbody2D rb;
+    public AIHealth health;
     public AITransform agentTransform;
     public ConeDetection alertDetection;
     public ConeDetection attackDetection;
+
+    public Transform target;
+    public GameObject weaponGameObject;
+    public IWeapon weapon;
+
+    private void Awake()
+    {
+        weapon = weaponGameObject.GetComponent<IWeapon>();
+    }
 }

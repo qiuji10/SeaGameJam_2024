@@ -7,9 +7,9 @@ public class Bullet : MonoBehaviour
     public int damage = 1;
     public float speed = 5;
     public float maxDistance = 5f;
-    Rigidbody2D _rb;
 
     private Vector2 origin;
+    private Rigidbody2D _rb;
 
     private void Awake()
     {

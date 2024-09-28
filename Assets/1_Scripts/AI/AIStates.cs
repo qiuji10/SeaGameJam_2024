@@ -105,11 +105,26 @@ public class AttackState : AIStateBase
     protected override void OnEnter()
     {
         base.OnEnter();
+        _blackboard.target = _blackboard.attackDetection.target.transform;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
         base.OnUpdate(deltaTime);
+
+        Transform weaponTR = _blackboard.weaponGameObject.transform;
+        IWeapon weapon = _blackboard.weapon;
+
+        Vector3 direction = _blackboard.target.position - weaponTR.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        weaponTR.rotation = Quaternion.Euler(0, 0, angle);
+
+        if (weapon.CanAttack())
+        {
+            weapon.Attack();
+        }
     }
 
     protected override void OnExit()
@@ -130,6 +145,11 @@ public class DeathState : AIStateBase
     protected override void OnUpdate(float deltaTime)
     {
         base.OnUpdate(deltaTime);
+
+        if (TimeInState > 1)
+        {
+            GameObject.Destroy(_blackboard.gameObject);
+        }
     }
 
     protected override void OnExit()

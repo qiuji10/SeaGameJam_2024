@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IWeapon
 {
-    [Header("Settings'")]
+    [Header("Settings")]
     public float cd;
+    public float range;
+
     public Transform firePoint;
     public Bullet bulletPrefab;
 
@@ -25,11 +27,18 @@ public class Gun : MonoBehaviour, IWeapon
     public void Attack()
     {
         cdTimer = cd;
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet.maxDistance = range;
     }
 
     public bool CanAttack()
     {
         return cdTimer <= 0;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(firePoint.position, range);
     }
 }
