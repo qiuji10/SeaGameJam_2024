@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1904738366993431647}
   m_Layer: 7
   m_Name: PF_AI_Basic
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

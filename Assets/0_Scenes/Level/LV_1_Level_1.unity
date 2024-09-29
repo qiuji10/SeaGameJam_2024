@@ -2428,7 +2428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1005491431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4337,14 +4337,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_AI_Pack_1
       objectReference: {fileID: 0}
-    - target: {fileID: 6232550635885512795, guid: 35c64686d20d54112a1fb86da294f34f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6512708735683805806, guid: 35c64686d20d54112a1fb86da294f34f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.36
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4639,14 +4631,6 @@ PrefabInstance:
     - target: {fileID: 3172299423984416749, guid: 35c64686d20d54112a1fb86da294f34f, type: 3}
       propertyPath: m_Name
       value: PF_AI_Pack
-      objectReference: {fileID: 0}
-    - target: {fileID: 6232550635885512795, guid: 35c64686d20d54112a1fb86da294f34f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6512708735683805806, guid: 35c64686d20d54112a1fb86da294f34f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
