@@ -309,6 +309,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5309e7cdb627b3b48a027e45b5cff47c, type: 3}
+--- !u!1001 &492638477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.3152075
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442128858461024430, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267095711115700713, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: spawnRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995906868692451501, guid: 451fec98094192144854da17f05dd31f, type: 3}
+      propertyPath: m_Name
+      value: Battery Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 451fec98094192144854da17f05dd31f, type: 3}
 --- !u!1001 &1551058784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,3 +630,4 @@ SceneRoots:
   - {fileID: 1942479764590616029}
   - {fileID: 320505875}
   - {fileID: 1551058784}
+  - {fileID: 492638477}
