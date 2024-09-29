@@ -26,7 +26,7 @@ public class UI_EndGame : MonoBehaviour
 
     public void ShowWinPanel()
     {
-        titleText.color = Color.green;
+        titleText.color = Color.white;
         titleText.SetText("You Win!");
 
         player.enabled = false;
