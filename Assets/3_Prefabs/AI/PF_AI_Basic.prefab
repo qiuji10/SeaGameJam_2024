@@ -144,6 +144,7 @@ MonoBehaviour:
   attackDetection: {fileID: 503379146138012923}
   target: {fileID: 0}
   weaponGameObject: {fileID: 3986136568306297016}
+  warningPopUp: {fileID: 2439434054446628178, guid: 2a4fa96dc160f4083bf3fe812e13e9bd, type: 3}
 --- !u!114 &1899387657786639342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4710025266696139223}
@@ -389,13 +390,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4710025266696139223}
     m_Modifications:
+    - target: {fileID: 46604294283419224, guid: b0095bff270094ff5a0da6d5c1b1a41e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1641852837800835627, guid: b0095bff270094ff5a0da6d5c1b1a41e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.98989326
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 1641852837800835627, guid: b0095bff270094ff5a0da6d5c1b1a41e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2332651
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641852837800835627, guid: b0095bff270094ff5a0da6d5c1b1a41e, type: 3}
       propertyPath: m_LocalPosition.z
