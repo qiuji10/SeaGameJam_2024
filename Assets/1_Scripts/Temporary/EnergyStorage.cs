@@ -6,7 +6,6 @@ public class EnergyStorage : MonoBehaviour
 {
     public int minimumRequirement;
     public PlayerMovement player;
-    public GameObject endGamePanel;
 
     private void Awake()
     {
@@ -17,10 +16,9 @@ public class EnergyStorage : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            if (player.totalBatteries >= minimumRequirement)
+            if (player.GetFullBatteryCount() >= minimumRequirement)
             {
-                player.enabled = false;
-                endGamePanel.SetActive(true);
+                UI_EndGame.instance.ShowWinPanel();
             }
         }
     }

@@ -84,13 +84,23 @@ public class AlertState : AIStateBase
     {
         base.OnUpdate(deltaTime);
 
+        var waypoints = _blackboard.waypoints;
+        float x1 = waypoints[1].transform.position.x;
+        float x2 = waypoints[0].transform.position.x;
+
+        float minX = Mathf.Min(x1, x2);
+        float maxX = Mathf.Max(x1, x2);
+
         Transform destination = _blackboard.alertDetection.target.transform;
         Vector2 newPosition = _blackboard.agentTransform.CalculateMovePosition(destination.position);
 
         newPosition = new Vector2(newPosition.x, _blackboard.rb.position.y);
 
-        _blackboard.direction = _blackboard.agentTransform.GetDirection(newPosition);
-        _blackboard.rb.MovePosition(newPosition);
+        if (newPosition.x > minX && newPosition.x < maxX)
+        {
+            _blackboard.direction = _blackboard.agentTransform.GetDirection(newPosition);
+            _blackboard.rb.MovePosition(newPosition);
+        }
     }
 
     protected override void OnExit()
@@ -144,6 +154,7 @@ public class DeathState : AIStateBase
     protected override void OnEnter()
     {
         base.OnEnter();
+        _blackboard.animator.SetTrigger(DEATH);
     }
 
     protected override void OnUpdate(float deltaTime)

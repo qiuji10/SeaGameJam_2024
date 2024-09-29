@@ -30,9 +30,9 @@ public class ConeDetection : MonoBehaviour
 
             if (angleToTarget < detectionAngle)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, detectionDistance, ~excludeMask);
+                //RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, detectionDistance, ~excludeMask);
 
-                if (hit.collider != null && hit.collider.gameObject == target.gameObject)
+                //if (hit.collider != null && hit.collider.gameObject == target.gameObject)
                 {
                     this.target = target.gameObject;
                     Debug.Log("Target detected: " + target.name);

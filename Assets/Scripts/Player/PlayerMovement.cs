@@ -147,4 +147,12 @@ public class PlayerMovement : MonoBehaviour
             animator.Play(PLAYER_IDLE); 
         }
     }
+
+
+
+    public int GetFullBatteryCount()
+    {
+        float fullBattery = (float)totalVolts / (float)totalBatteries;
+        return Mathf.RoundToInt(fullBattery);
+    }
 }

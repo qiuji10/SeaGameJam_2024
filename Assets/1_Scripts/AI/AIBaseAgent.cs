@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.VersionControl.Asset;
 
 public class AIBaseAgent : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class AIBaseAgent : MonoBehaviour
         var alert = new AlertState(_blackboard);
         var attack = new AttackState(_blackboard);
         var death = new DeathState(_blackboard);
+
+        states = new List<AIStateBase> { idle, patrol, alert, attack, death };
 
         idle.AddTransition(patrol, timeInState => timeInState > 1f);
         idle.AddTransition(alert, timeInState => _blackboard.alertDetection.detected);
