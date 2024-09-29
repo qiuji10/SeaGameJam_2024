@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 477016683069267790}
   - component: {fileID: 1899387657786639342}
   - component: {fileID: 1904738366993431647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PF_AI_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,6 +329,9 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
+  excludeMask:
+    serializedVersion: 2
+    m_Bits: 128
   gizmosColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &8453358902870761241
 GameObject:
@@ -381,6 +384,9 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
+  excludeMask:
+    serializedVersion: 2
+    m_Bits: 128
   gizmosColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &8732287764300897935
 PrefabInstance:

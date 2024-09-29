@@ -48,7 +48,7 @@ MonoBehaviour:
   sceneValues:
     _serializedList:
     - Key: 0
-      Value: LV_MainMenu
+      Value: LV_0_MainMenu
     - Key: 1
       Value: LV_1_Level_1
   fadingUI: {fileID: 5587967751624252827}

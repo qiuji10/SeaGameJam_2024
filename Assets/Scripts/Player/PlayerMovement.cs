@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         affectedSpeed = movementSpeed;
         jumpPower = initialjumpPower;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         playerShooting = GetComponent<PlayerShooting>();
     }
 

@@ -9,6 +9,7 @@ public class ConeDetection : MonoBehaviour
     public float detectionAngle = 45f;
     public float detectionDistance = 5f;
     public LayerMask targetMask;
+    public LayerMask excludeMask;
 
 #if UNITY_EDITOR
     public Color gizmosColor = Color.red;
@@ -29,9 +30,14 @@ public class ConeDetection : MonoBehaviour
 
             if (angleToTarget < detectionAngle)
             {
-                this.target = target.gameObject;
-                Debug.Log("Target detected: " + target.name);
-                return true;
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, detectionDistance, ~excludeMask);
+
+                if (hit.collider != null && hit.collider.gameObject == target.gameObject)
+                {
+                    this.target = target.gameObject;
+                    Debug.Log("Target detected: " + target.name);
+                    return true;
+                }
             }
         }
 
@@ -50,6 +56,14 @@ public class ConeDetection : MonoBehaviour
 
         Gizmos.DrawLine(transform.position, transform.position + directionA);
         Gizmos.DrawLine(transform.position, transform.position + directionB);
+
+        if (target != null)
+        {
+            Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToTarget, detectionDistance, ~excludeMask);
+            Gizmos.color = hit.collider != null && hit.collider.gameObject == target ? Color.green : Color.red;
+            Gizmos.DrawLine(transform.position, target.transform.position);
+        }
     }
 #endif
 }
