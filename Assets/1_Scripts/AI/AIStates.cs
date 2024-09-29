@@ -75,6 +75,8 @@ public class AlertState : AIStateBase
     {
         base.OnEnter();
 
+        GameObject.Instantiate(_blackboard.warningPopUp, _blackboard.transform.position + new Vector3(0, 1, 0), Quaternion.identity, _blackboard.transform);
+
         _blackboard.speed = _blackboard.chaseSpeed;
     }
 
