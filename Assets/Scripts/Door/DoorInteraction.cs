@@ -21,6 +21,7 @@ public class DoorInteraction : MonoBehaviour
             // Check if the player has collected enough batteries
             if (playerMovement.totalBatteries >= 10)
             {
+                UI_EndGame.instance.ShowWinPanel();
                 Debug.Log("You Win!");
             }
 

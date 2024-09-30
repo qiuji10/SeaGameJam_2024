@@ -7,6 +7,7 @@ public class BatterySpawner : MonoBehaviour
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private Transform spawnerBase;
     [SerializeField] private float spawnRadius = 2f;
+    [SerializeField] private float verticalOffset = 1f;
     [SerializeField] private string batteryTag = "Battery";
 
     private List<GameObject> batteries = new List<GameObject>();
@@ -20,24 +21,18 @@ public class BatterySpawner : MonoBehaviour
             batteries.Add(battery);
         }
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DestroyOneBattery();
-        }
-    }
 
     public void SpawnBattery()
     {
         if (batteryPrefab != null && spawnerBase != null)
         {
-            Vector3 randomOffset = Random.insideUnitCircle * spawnRadius;
-            Vector3 spawnPosition = spawnerBase.position + randomOffset;
+            Vector3 randomHorizontalOffset = new Vector3(Random.Range(-spawnRadius, spawnRadius), verticalOffset, 0f);
+            Vector3 spawnPosition = spawnerBase.position + randomHorizontalOffset;
 
             GameObject newBattery = Instantiate(batteryPrefab, spawnPosition, Quaternion.identity);
-            newBattery.tag = batteryTag; 
+            newBattery.tag = batteryTag;
             batteries.Add(newBattery);
+
             Debug.Log("Battery Spawned at: " + spawnPosition);
         }
     }
